@@ -1,5 +1,7 @@
 import { memoryAdapter } from "better-auth/adapters/memory";
 
+import type { ProductCategory } from "./constants";
+
 export type Role = "admin" | "user";
 
 export interface Product {
@@ -8,6 +10,9 @@ export interface Product {
 	description: string;
 	price: number;
 	stock: number;
+	category: ProductCategory;
+	artisan: string;
+	image: string | null;
 	createdAt: string;
 	updatedAt: string;
 }
@@ -17,16 +22,25 @@ export interface UserRole {
 	role: Role;
 }
 
+export interface AuditEntry {
+	id: string;
+	at: string;
+	actorId: string;
+	actorEmail: string;
+	action: string;
+	detail: string;
+}
+
 /**
  * In-memory development database.
  *
  * better-auth owns the `user`, `session`, `account` and `verification` tables
- * (managed through `memoryAdapter`). This app adds `product` and `userRole`.
+ * (managed through `memoryAdapter`). This app adds `product`, `userRole`, and
+ * `auditLog`.
  *
  * NOTE: this is memory only. Data survives within a single running server
  * process (local dev, or one warmed Vercel serverless instance) but is reset
  * on every redeploy / cold start. There is no persistent database by design.
- * See AGENTS.md for how to seed an admin account and sample data.
  */
 const memoryDb = {
 	user: [] as Array<{
@@ -45,6 +59,7 @@ const memoryDb = {
 	verification: [] as unknown[],
 	product: [] as Product[],
 	userRole: [] as UserRole[],
+	auditLog: [] as AuditEntry[],
 };
 
 export const adapter = memoryAdapter(memoryDb);
@@ -68,4 +83,15 @@ export function setUserRole(userId: string, role: Role) {
 
 export function removeUserRole(userId: string) {
 	db.userRole = db.userRole.filter((r) => r.userId !== userId);
+}
+
+export function logAudit(entry: Omit<AuditEntry, "id" | "at">) {
+	db.auditLog.unshift({
+		id: crypto.randomUUID(),
+		at: new Date().toISOString(),
+		...entry,
+	});
+	if (db.auditLog.length > 80) {
+		db.auditLog.length = 80;
+	}
 }

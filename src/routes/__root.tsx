@@ -1,8 +1,6 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 
@@ -27,7 +25,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "KaryaLokal — Katalog UMKM Ekraf",
 			},
 		],
 		links: [
@@ -42,15 +40,17 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="id" suppressHydrationWarning>
 			<head>
-				<script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+				{/* Static theme bootstrap only — never interpolates user content. */}
+				<script
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: static theme init, not user content
+					dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
+				/>
 				<HeadContent />
 			</head>
 			<body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
-				<Header />
 				{children}
-				<Footer />
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",
