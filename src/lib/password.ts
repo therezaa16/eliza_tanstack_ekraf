@@ -15,9 +15,12 @@ export function passwordIssues(password: string): string[] {
 }
 
 export function sanitizeText(input: string, max = 400): string {
-	return input
-		.replace(/<[^>]*>/g, "")
-		.replace(/[\u0000-\u001F\u007F]/g, "")
+	return Array.from(input.replace(/<[^>]*>/g, ""))
+		.filter((character) => {
+			const codePoint = character.codePointAt(0);
+			return codePoint !== undefined && codePoint > 0x1f && codePoint !== 0x7f;
+		})
+		.join("")
 		.replace(/\s+/g, " ")
 		.trim()
 		.slice(0, max);

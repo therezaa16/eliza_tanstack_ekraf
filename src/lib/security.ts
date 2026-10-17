@@ -93,4 +93,3 @@ export function consumeCaptcha(captchaId: string, answer: string): boolean {
 	if (!row || row.expiresAt < Date.now()) return false;
 	return Number.parseInt(answer, 10) === row.answer;
 }
-

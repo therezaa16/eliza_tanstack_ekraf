@@ -3,7 +3,15 @@ import { getRequest } from "@tanstack/react-start/server";
 import { z } from "zod";
 
 import { auth } from "@/lib/auth";
-import { SEED_ADMIN_EMAIL, SEED_ADMIN_PASSWORD, db, getUserRole, logAudit, setUserRole } from "@/lib/db";
+import {
+	SEED_ADMIN_EMAIL,
+	SEED_ADMIN_PASSWORD,
+	db,
+	getUserRole,
+	logAudit,
+	setUserRole,
+} from "@/lib/db";
+import { sanitizeText, strongPasswordSchema } from "@/lib/password";
 import {
 	consumeCaptcha,
 	createCaptcha,
@@ -14,7 +22,6 @@ import {
 	recordLoginFailure,
 	recordLoginSuccess,
 } from "@/lib/security";
-import { sanitizeText, strongPasswordSchema } from "@/lib/password";
 import { getCurrentSession } from "@/lib/session";
 
 export const getServerSession = createServerFn({ method: "GET" }).handler(async () => {

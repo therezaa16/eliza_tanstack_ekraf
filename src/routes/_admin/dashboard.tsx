@@ -34,7 +34,9 @@ function Dashboard() {
 	return (
 		<div className="mx-auto max-w-5xl">
 			<p className="island-kicker mb-2">Dashboard</p>
-			<h1 className="display-title mb-2 text-3xl font-bold text-[var(--sea-ink)]">Ringkasan karya</h1>
+			<h1 className="display-title mb-2 text-3xl font-bold text-[var(--sea-ink)]">
+				Ringkasan karya
+			</h1>
 			<p className="mt-0 mb-6 text-[var(--sea-ink-soft)]">
 				Pantau katalog UMKM ekraf. Semua angka diambil lewat server function yang mewajibkan sesi.
 			</p>
@@ -62,7 +64,9 @@ function Dashboard() {
 				<section className="island-shell rounded-2xl p-5">
 					<h2 className="mt-0 mb-1 text-base font-semibold">Karya terbaru</h2>
 					{products.length === 0 && !productsQuery.isPending ? (
-						<p className="text-sm text-[var(--sea-ink-soft)]">Belum ada karya. Tambahkan dari menu Karya.</p>
+						<p className="text-sm text-[var(--sea-ink-soft)]">
+							Belum ada karya. Tambahkan dari menu Karya.
+						</p>
 					) : (
 						<ul className="m-0 grid list-none gap-3 p-0">
 							{products.slice(0, 4).map((item) => (

@@ -1,14 +1,7 @@
 export const APP_NAME = "KaryaLokal";
 export const APP_TAGLINE = "Katalog karya UMKM ekonomi kreatif daerah";
 
-export const PRODUCT_CATEGORIES = [
-	"kriya",
-	"fashion",
-	"kuliner",
-	"seni",
-	"musik",
-	"film",
-] as const;
+export const PRODUCT_CATEGORIES = ["kriya", "fashion", "kuliner", "seni", "musik", "film"] as const;
 
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];
 

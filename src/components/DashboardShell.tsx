@@ -3,8 +3,8 @@ import { LayoutDashboard, LogOut, Menu, Package, Users, X } from "lucide-react";
 import { useState } from "react";
 
 import ThemeToggle from "@/components/ThemeToggle";
-import { APP_NAME } from "@/lib/constants";
 import { authClient } from "@/lib/auth-client";
+import { APP_NAME } from "@/lib/constants";
 
 type Me = {
 	id: string;
@@ -22,9 +22,7 @@ export function DashboardShell({ me, children }: { me: Me; children: React.React
 	const items = [
 		{ to: "/dashboard" as const, label: "Ringkasan", icon: LayoutDashboard },
 		{ to: "/products" as const, label: "Karya", icon: Package },
-		...(me.role === "admin"
-			? [{ to: "/users" as const, label: "Pengguna", icon: Users }]
-			: []),
+		...(me.role === "admin" ? [{ to: "/users" as const, label: "Pengguna", icon: Users }] : []),
 	];
 
 	const nav = (
@@ -60,7 +58,10 @@ export function DashboardShell({ me, children }: { me: Me; children: React.React
 			>
 				<div className="flex items-center justify-between gap-2 border-b border-[var(--line)] px-3 py-4">
 					{collapsed ? null : (
-						<Link to="/" className="truncate text-sm font-semibold text-[var(--sea-ink)] no-underline">
+						<Link
+							to="/"
+							className="truncate text-sm font-semibold text-[var(--sea-ink)] no-underline"
+						>
 							{APP_NAME}
 						</Link>
 					)}
@@ -109,7 +110,9 @@ export function DashboardShell({ me, children }: { me: Me; children: React.React
 					>
 						<Menu className="size-5" />
 					</button>
-					<p className="truncate text-sm font-medium text-[var(--sea-ink-soft)]">{me.name || me.email}</p>
+					<p className="truncate text-sm font-medium text-[var(--sea-ink-soft)]">
+						{me.name || me.email}
+					</p>
 					<div className="ml-auto flex items-center gap-2">
 						<ThemeToggle />
 						<button

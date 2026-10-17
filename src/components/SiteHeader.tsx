@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
-import { APP_NAME } from "@/lib/constants";
 import { authClient } from "@/lib/auth-client";
+import { APP_NAME } from "@/lib/constants";
 import ThemeToggle from "./ThemeToggle";
 
 export function SiteHeader() {

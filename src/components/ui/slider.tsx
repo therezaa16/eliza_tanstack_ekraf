@@ -16,6 +16,7 @@ function Slider({
 		() => (Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max]),
 		[value, defaultValue, min, max],
 	);
+	const thumbIds = _values.map((_, index) => `thumb-${index}`);
 
 	return (
 		<SliderPrimitive.Root
@@ -43,10 +44,10 @@ function Slider({
 					)}
 				/>
 			</SliderPrimitive.Track>
-			{_values.map((thumbValue, index) => (
+			{thumbIds.map((thumbId) => (
 				<SliderPrimitive.Thumb
 					data-slot="slider-thumb"
-					key={`thumb-${thumbValue}-${index}`}
+					key={thumbId}
 					className="block size-4 shrink-0 rounded-full border border-primary bg-white shadow-sm ring-ring/50 transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
 				/>
 			))}

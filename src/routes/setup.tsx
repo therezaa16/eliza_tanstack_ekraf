@@ -40,8 +40,8 @@ function Setup() {
 						Seed akun admin
 					</h1>
 					<p className="m-0 max-w-2xl text-base leading-8 text-[var(--sea-ink-soft)]">
-						Membuat administrator (kata sandi di-hash Better Auth) dan tiga karya UMKM contoh.
-						Aman dijalankan berulang kali.
+						Membuat administrator (kata sandi di-hash Better Auth) dan tiga karya UMKM contoh. Aman
+						dijalankan berulang kali.
 					</p>
 
 					<div className="mt-8">
